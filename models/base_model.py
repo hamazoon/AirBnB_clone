@@ -1,5 +1,11 @@
 #!/usr/bin/python3
 
+"""
+class BaseModel that defines all common
+attributes/methods for other classes
+take care of the initialization, serialization and
+deserialization of your future instances
+"""
 from datetime import datetime
 from models import storage
 from uuid import uuid4
