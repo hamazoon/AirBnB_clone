@@ -52,26 +52,30 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Do nothing upon receiving an empty line."""
         pass
-    def default(self, arg):
-        """Default behavior for cmd module when input is invalid"""
-        argdict = {
-            "all": self.do_all,
-            "show": self.do_show,
-            "destroy": self.do_destroy,
-            "count": self.do_count,
-            "update": self.do_update
-        }
-        match = re.search(r"\.", arg)
-        if match is not None:
-            argl = [arg[:match.span()[0]], arg[match.span()[1]:]]
-            match = re.search(r"\((.*?)\)", argl[1])
-            if match is not None:
-                command = [argl[1][:match.span()[0]], match.group()[1:-1]]
-                if command[0] in argdict.keys():
-                    call = "{} {}".format(argl[0], command[1])
-                    return argdict[command[0]](call)
-        print("*** Unknown syntax: {}".format(arg))
-        return False
+
+    def default(self, args):
+        """Method called for default interpretation when a
+        command prefix is not recognized."""
+        if len(args.split(".")) == 2:
+            class_name, method = args.split(".")
+            if method == "all()":
+                self.do_all(class_name)
+            elif method == "count()":
+                self.do_count(class_name)
+            elif method.startswith("show(") and method.endswith(")"):
+                id = method[5:-1].strip('"')
+                self.do_show("{} {}".format(class_name, id))
+            elif method.startswith("destroy(") and method.endswith(")"):
+                id = method[8:-1].strip('"')
+                self.do_destroy("{} {}".format(class_name, id))
+            elif method.startswith("update(") and method.endswith(")"):
+                remaining_args = method[7:-1].split(", ")
+                id = remaining_args[0].strip('"')
+                attr_name = remaining_args[1].strip('"')
+                attr_value = remaining_args[2]
+                self.do_update("{} {} {} {}".format(
+                    class_name, id, attr_name, attr_value))
+
 
     def do_quit(self, arg):
         """Quit command to exit the program."""
