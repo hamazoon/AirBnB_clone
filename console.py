@@ -77,10 +77,6 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program."""
         return True
 
-    def do_quit(self, arg):
-        """Quit command to exit the program."""
-        return True
-
     def do_EOF(self, arg):
         """EOF signal to exit the program."""
         print("")
@@ -149,13 +145,12 @@ class HBNBCommand(cmd.Cmd):
                     objl.append(obj.__str__())
             print(objl)
 
-    def do_count(self, arg):
-        """Usage: count <class> or <class>.count()
-        Retrieve the number of instances of a given class."""
-        argl = parse(arg)
+    def do_count(self, class_name):
+        """Retrieves the number of instances of a class"""
         count = 0
-        for obj in storage.all().values():
-            if argl[0] == obj.__class__.__name__:
+        objects_dict = storage.all()
+        for key, value in objects_dict.items():
+            if value.__class__.__name__ == class_name:
                 count += 1
         print(count)
 
