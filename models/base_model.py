@@ -7,7 +7,7 @@ take care of the initialization, serialization and
 deserialization of your future instances
 """
 from datetime import datetime
-from models import storage
+import models
 from uuid import uuid4
 
 
@@ -28,7 +28,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            models.storage.new(self)
 
         BaseModel.count_instances += 1
 
@@ -37,14 +37,16 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
-        self.created_at = self.created_at.isoformat()
-        self.updated_at = self.updated_at.isoformat()
-        self.__dict__["__class__"] = self.__class__.__name__
-        return self.__dict__
+        new = self.__dict__.copy()
+        new["created_at"] = self.created_at.isoformat()
+        new["updated_at"] = self.updated_at.isoformat()
+        new["__class__"] = self.__class__.__name__
+        return new
 
     def __del__(self):
         BaseModel.count_instances -= 1
+
 
