@@ -1,0 +1,108 @@
+.places h1{
+    font-size: 30px;
+    margin-top: 20px;
+}
+article{
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: solid 1px  #FF5A5F;
+    border-radius: 4px;
+    text-align: center;
+}
+article h2{
+    font-size: 30px;
+    margin-top: -1px;
+    padding-left: 20%;
+    padding-right: 60px;
+    padding-bottom: 37px;
+}
+.articles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.price_by_night{
+    color: #FF5A5F;
+    border: solid #FF5A5F 4px;
+    border-radius: 50%;
+    min-width: 60px;
+    height: 60px;
+    font-size: 30px;
+    margin-top: -8px;
+   
+}
+.price{
+    margin-top: 10px;
+}
+.price_title{
+    display: flex;
+}
+.information{
+    height:80px;
+    border-top: solid #DDDDDD 1px;
+    border-bottom: solid #DDDDDD 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.max_guest{
+    width: 100px;
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+    justify-content: center;
+}
+.guest_icon{
+    height: inherit;
+    width: inherit;
+    background: url(icon_group.png);
+    background-repeat: no-repeat;
+    margin-left: 35px;
+}
+
+
+.number_rooms{
+    width: 100px;
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+    justify-content: center;
+}
+.rooms_icon{
+    height: inherit;
+    width: inherit;
+    background: url(icon_bed.png);
+    background-repeat: no-repeat;
+    margin-left: 35px;
+    
+}
+
+
+.number_bathrooms{
+    width: 100px;
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+    justify-content: center;
+}
+.bathrooms_icon{
+    height: inherit;
+    width: inherit;
+    background: url(icon_bath.png);
+    background-repeat: no-repeat;
+    margin-left: 35px;
+}
+
+.user{
+    font-size: 13px;
+    text-align: left;
+    margin-top: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.description{
+    font-size: 13px;
+    text-align: left;
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
